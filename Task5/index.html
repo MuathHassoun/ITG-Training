@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task5</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .wrapper {
+            display: flex;
+            gap: 20px;
+        }
+
+        .first-column, .second-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 200px;
+            height: 300px;
+            border: 4px solid black;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+        }
+
+        .box {
+            width: 50px;
+            height: 50px;
+            border: 3px solid;
+            box-sizing: border-box;
+        }
+
+        .box-1 { border-color: red; }
+        .box-2 { border-color: gray; }
+        .box-3 { border-color: purple; }
+        .box-4 { border-color: brown; }
+        .box-5 { border-color: yellow; }
+        .box-6 { border-color: green; }
+        .box-7 { border-color: blue; }
+        .box-8 { border-color: orange; }
+        .box-9 { border-color: pink; }
+        .box-10 { border-color: cyan; }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="first-column">
+            <div id="left-container" class="container">
+                <div class="box box-1"></div>
+                <div class="box box-2"></div>
+                <div class="box box-3"></div>
+                <div class="box box-4"></div>
+                <div class="box box-5"></div>
+                <div class="box box-6"></div>
+            </div>
+            <button id="to-right">Move to right</button>
+        </div>
+
+        <div class="second-column">
+            <div id="right-container" class="container">
+                <div class="box box-7"></div>
+                <div class="box box-8"></div>
+                <div class="box box-9"></div>
+                <div class="box box-10"></div>
+            </div>
+            <button id="to-left">Move to left</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#to-right').click(function () {
+                var $boxes = $('#left-container .box');
+                if ($boxes.length === 0) {
+                    alert('There are no more boxes to move!');
+                } else {
+                    $boxes.last().appendTo('#right-container');
+                }
+            });
+
+            $('#to-left').click(function () {
+                var $boxes = $('#right-container .box');
+                if ($boxes.length === 0) {
+                    alert('There are no more boxes to move!');
+                } else {
+                    $boxes.last().appendTo('#left-container');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
